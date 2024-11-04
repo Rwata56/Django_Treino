@@ -1,0 +1,33 @@
+Selecionar todos os dados:
+
+SELECT * FROM accounts_user;
+
+Contar o número de registros:
+
+SELECT COUNT(*) FROM accounts_user;
+
+Verificar a estrutura da tabela:
+
+DESCRIBE accounts_user;
+
+Excluir a tabela (se precisar remover a tabela):
+
+DROP TABLE accounts_user;
+
+Inserir um novo registro:
+
+INSERT INTO accounts_user (column1, column2) VALUES (value1, value2);
+
+Atualizar um registro:
+
+UPDATE accounts_user SET column1 = value1 WHERE condition;
+
+Excluir um registro:
+
+DELETE FROM accounts_user WHERE condition;
+
+
+COMANDOS DE MIGRATE
+
+ python manage.py makemigrations
+ python manage.py migrate
