@@ -1,3 +1,7 @@
+senha do banco : w
+
+
+
 Selecionar todos os dados:
 
 SELECT * FROM accounts_user;
@@ -31,3 +35,7 @@ COMANDOS DE MIGRATE
 
  python manage.py makemigrations
  python manage.py migrate
+
+ ATIVAR O VENV
+ 
+ source venv/bin/activate
