@@ -14,13 +14,13 @@ class Signin(Base):
 
         token = RefreshToken.for_user(user)
 
-        enterprise = self.get_enterprise_user(user_id)
+        enterprise = self.get_enterprise_user(user.id)
 
         serializer = UserSerializer(user)
 
         return Response({
             "user": serializer.data,
             "enterprise": enterprise,
-            "refresh": token.refresh,
-            "access_token": token.access_token
+            "refresh": str(token),
+            "access": str(token.access_token)
         })
