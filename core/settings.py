@@ -21,7 +21,7 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # See https://docs.djangoproject.com/en/4.2/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = 'django-insecure-mzztk!#x&u6rqs#gtlqt5+l*65!s@nzyw3ov9mo&xu4b**o4z$'
+SECRET_KEY = 'django-insecure-1gaaqxawql#8e9+4i5y_q0v77-*tzpe2-47zq(u*(7!90-q2et'
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
@@ -39,17 +39,20 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
 
-    #rest Framework
+    # Rest Framework
     'rest_framework',
-    "corsheaders",      
-    #apps
+
+    # Cors headers
+    "corsheaders",
+
+    # Apps
     "accounts",
     "companies"
-    
 ]
 
 MIDDLEWARE = [
     "corsheaders.middleware.CorsMiddleware",
+
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
@@ -81,19 +84,18 @@ WSGI_APPLICATION = 'core.wsgi.application'
 
 CORS_ALLOW_ALL_ORIGINS = True
 
-
 # Database
 # https://docs.djangoproject.com/en/4.2/ref/settings/#databases
 
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.mysql',
-        'NAME':'sistema_erp',
-        'USER':'root',
-        'PASSWORD':'w',
-        'PORT':3306,
+        'NAME': 'sistema_erp1',
+        'USER': 'root',
+        'PASSWORD': 'w',
+        'PORT': 3306
     }
-}
+}       
 
 
 # Password validation
@@ -114,8 +116,7 @@ AUTH_PASSWORD_VALIDATORS = [
     },
 ]
 
-AUTH_USER_MODEL ="accounts.user"
-
+AUTH_USER_MODEL = 'accounts.User'
 
 # Internationalization
 # https://docs.djangoproject.com/en/4.2/topics/i18n/
@@ -139,6 +140,7 @@ STATIC_URL = 'static/'
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
+# Rest Framework - Config
 REST_FRAMEWORK = {
     'DEFAULT_AUTHENTICATION_CLASSES': (
         'rest_framework_simplejwt.authentication.JWTAuthentication',
@@ -146,5 +148,6 @@ REST_FRAMEWORK = {
 }
 
 SIMPLE_JWT = {
-    "SLIDING_TOKEN_LIFETIME": timedelta(days=1),
+    "ACCESS_TOKEN_LIFETIME": timedelta(days=1),
+    "REFRESH_TOKEN_LIFETIME": timedelta(days=3)
 }

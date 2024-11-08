@@ -44,7 +44,7 @@ class EmployeeSerializer (serializers.ModelSerializer):
 
     def get_email(self, obj):
         return obj.user.email
-
+    
     def get_groups(self, obj):
         groupsDB = User_Groups.objects.filter(user_id=obj.user.id).all()
         groupsDATA = []
@@ -56,7 +56,7 @@ class EmployeeSerializer (serializers.ModelSerializer):
             })
 
         return groupsDATA
-
+    
 class GroupsSerializer (serializers.ModelSerializer):
     permissions = serializers.SerializerMethodField()
 
@@ -80,7 +80,7 @@ class GroupsSerializer (serializers.ModelSerializer):
             })
 
         return permissions
-
+    
 class PermissionsSerializer (serializers.ModelSerializer):
     class Meta:
         model = Permission
@@ -106,7 +106,7 @@ class TasksSerializer (serializers.ModelSerializer):
 
     def get_status(self, obj):
         return obj.status.name
-
+    
 class TaskSerializer (serializers.ModelSerializer):
     status = serializers.SerializerMethodField()
     employee = serializers.SerializerMethodField()
@@ -125,10 +125,10 @@ class TaskSerializer (serializers.ModelSerializer):
 
     def get_status(self, obj):
         return obj.status.name
-
+    
     def get_employee(self, obj):
         return EmployeesSerializer(obj.employee).data
-
+    
     def update(self, instance, validated_data):
         instance.title = validated_data.get('title', instance.title)
         instance.description = validated_data.get('description', instance.description)

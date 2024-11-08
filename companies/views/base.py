@@ -22,29 +22,29 @@ class Base(APIView):
 
         if not employee:
             raise NotFoundEmployee
-
+        
         return employee
-
+    
     def get_group(self, group_id, enterprise_id):
         group = Group.objects.values('name').filter(id=group_id, enterprise_id=enterprise_id).first()
 
         if not group:
             raise NotFoundGroup
-
+        
         return group
-
+    
     def get_status(self, status_id):
         status = TaskStatus.objects.filter(id=status_id).first()
 
         if not status:
             raise NotFoundTaskStatus
-
+        
         return status
-
+    
     def get_task(self, task_id, enterprise_id):
         task = Task.objects.filter(id=task_id, enterprise_id=enterprise_id).first()
 
         if not task:
             raise NotFoundTask
-
+        
         return task
