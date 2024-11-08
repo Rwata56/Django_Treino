@@ -4,7 +4,7 @@ from companies.models import Employee, Enterprise
 from companies.serializers import EmployeeSerializer, EmployeesSerializer
 
 from accounts.auth import Authentication
-from accounts.models import User, User_Groups
+from accounts.models import User, User_Groups       
 
 from rest_framework.views import Response, status
 from rest_framework.exceptions import APIException
@@ -24,7 +24,7 @@ class Employees(Base):
         serializer = EmployeesSerializer(employees, many=True)
 
         return Response({"employees": serializer.data})
-    
+
     def post(self, request):
         name = request.data.get('name')
         email = request.data.get('email')
@@ -42,7 +42,7 @@ class Employees(Base):
 
         if isinstance(signup_user, User):
             return Response({"success": True}, status=status.HTTP_201_CREATED)
-        
+
         return Response(signup_user, status=status.HTTP_400_BAD_REQUEST)
 
 
@@ -55,7 +55,7 @@ class EmployeeDetail(Base):
         serializer = EmployeeSerializer(employee)
 
         return Response(serializer.data)
-    
+
     def put(self, request, employee_id):
         groups = request.data.get('groups')
 
@@ -66,7 +66,7 @@ class EmployeeDetail(Base):
 
         if email != employee.user.email and User.objects.filter(email=email).exists():
             raise APIException("Esse email já está em uso", code="email_already_use")
-        
+
         User.objects.filter(id=employee.user.id).update(
             name=name,
             email=email
@@ -94,9 +94,9 @@ class EmployeeDetail(Base):
 
         if check_if_owner:
             raise APIException('Você não pode demitir o dono da empresa')
-        
+
         employee.delete()
-        
+
         User.objects.filter(id=employee.user.id).delete()
 
         return Response({"success": True})
